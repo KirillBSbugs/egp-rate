@@ -11,10 +11,12 @@ ID_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "msg_id.txt")
 
 
 def rate_yahoo() -> float:
-    url = "https://query1.finance.yahoo.com/v8/finance/chart/EGPRUB=X"
-    r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
-    r.raise_for_status()
-    return float(r.json()["chart"]["result"][0]["meta"]["regularMarketPrice"])
+    def px(pair):
+        url = f"https://query1.finance.yahoo.com/v8/finance/chart/{pair}=X"
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+        r.raise_for_status()
+        return float(r.json()["chart"]["result"][0]["meta"]["regularMarketPrice"])
+    return px("USDRUB") / px("USDEGP")
 
 
 def rate_erapi() -> float:
