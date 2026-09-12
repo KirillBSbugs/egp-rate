@@ -22,3 +22,9 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHANNEL: ${{ secrets.CHANNEL }}
           MESSAGE_ID: ${{ secrets.MESSAGE_ID }}
+
+      - run: python usd_rate_bot.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHANNEL: ${{ secrets.USD_CHANNEL }}
+          MESSAGE_ID: ${{ secrets.USD_MESSAGE_ID }}
